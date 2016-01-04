@@ -30,6 +30,10 @@
             "libraries": [
               "-framework",   
               "IOKit"
+            ],
+	    "libraries": [
+              "-framework",
+              "DiskArbitration"
             ]
           }
         ],
