@@ -288,7 +288,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
 
       // Block for a while and keep trying to see if the device has been mounted,
       // as this procedure can take some time.
-      for(int i = 0; i < 50; ++i)
+      for(int i = 0; !initialDeviceImport && i < 50; ++i)
         {
           bsdName = (CFStringRef) IORegistryEntrySearchCFProperty(usbDevice,
                                                                   kIOServicePlane,
@@ -334,7 +334,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
                               CFRelease(desc);
                             }
                         }
-                      else if(!initialDeviceImport)
+                      else
                         {
                           // We didn't get a volume yet, so just 0.1 seconds.
                           // Total timeout should be 5 seconds.
@@ -349,7 +349,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
               CFRelease(bsdName);
               break;
             }
-          else if(!initialDeviceImport)
+          else
             {
               // We didn't get a BSD name, so just wait 0.15 seconds.
               // In total, timeout should be 7.5 seconds
