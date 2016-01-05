@@ -420,7 +420,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam, DeviceS
 		if(szDevId == buf) {
 
 			WaitForSingleObject(deviceChangedSentEvent, INFINITE);
-			
+
 			DWORD DataT;
 			DWORD nSize;
 			DllSetupDiGetDeviceRegistryProperty(hDevInfo, pspDevInfoData, SPDRP_HARDWAREID, &DataT, (PBYTE)buf, MAX_PATH, &nSize);

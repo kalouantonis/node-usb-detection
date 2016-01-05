@@ -43,7 +43,7 @@ int fd;
 pthread_t thread;
 pthread_mutex_t notify_mutex;
 pthread_cond_t notifyNewDevice;
-pthread_cond_t notifyDeviceHandled;
+thread_cond_t notifyDeviceHandled;
 
 bool newDeviceAvailable = false;
 bool deviceHandled = true;
