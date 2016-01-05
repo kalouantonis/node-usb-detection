@@ -34,7 +34,7 @@ const auto CURRENT_SUPPORTED_VERSION = __MAC_OS_X_VERSION_MAX_ALLOWED;
 // El Capitan is 101100 (in AvailabilityInternal.h)
 const auto EL_CAPITAN = 101100;
 
-// IOUSBDevice has become IOUSBHostDevice in El Capitan...
+// IOUSBDevice has become IOUSBHostDevice in El Capitan
 const char *SERVICE_MATCHER = CURRENT_SUPPORTED_VERSION < EL_CAPITAN ? "IOUSBDevice" : "IOUSBHostDevice";
 
 typedef struct DeviceListItem
@@ -302,8 +302,6 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
               sprintf( bsdNameBuf, "/dev/%ss1", cfStringRefToCString(bsdName));
               char* bsdNameC = &bsdNameBuf[0];
               DASessionRef daSession = DASessionCreate(kCFAllocatorDefault);
-
-              fprintf(stderr, "Found BSD: %s\n", bsdNameC);
 
               DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, daSession, bsdNameC);
 
