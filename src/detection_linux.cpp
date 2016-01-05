@@ -1,11 +1,10 @@
 #include <libudev.h>
-#include <pthread.h> 
+#include <pthread.h>
 
 #include "detection.h"
 #include "deviceList.h"
 
 using namespace std;
-
 
 
 /**********************************

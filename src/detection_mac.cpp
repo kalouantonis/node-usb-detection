@@ -357,8 +357,6 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
             }
         }
 
-
-
       // Now, get the locationID of this device. In order to do this, we need to create an IOUSBDeviceInterface
       // for our device. This will create the necessary connections between our userland application and the
       // kernel object for the USB Device.
