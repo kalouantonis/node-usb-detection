@@ -334,7 +334,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
                               CFRelease(desc);
                             }
                         }
-                      else
+                      else if(!initialDeviceImport)
                         {
                           // We didn't get a volume yet, so just 0.1 seconds.
                           // Total timeout should be 5 seconds.
@@ -349,7 +349,7 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
               CFRelease(bsdName);
               break;
             }
-          else
+          else if(!initialDeviceImport)
             {
               // We didn't get a BSD name, so just wait 0.15 seconds.
               // In total, timeout should be 7.5 seconds
