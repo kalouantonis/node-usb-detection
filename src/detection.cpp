@@ -8,6 +8,7 @@
 #define OBJECT_ITEM_MANUFACTURER "manufacturer"
 #define OBJECT_ITEM_SERIAL_NUMBER "serialNumber"
 #define OBJECT_ITEM_DEVICE_ADDRESS "deviceAddress"
+#define OBJECT_ITEM_MOUNT_PATH "mountPath"
 
 
 Nan::Callback* addedCallback;
@@ -53,6 +54,9 @@ void NotifyAdded(ListResultItem_t* it) {
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MANUFACTURER), v8::String::NewFromUtf8(isolate, it->manufacturer.c_str()));
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_SERIAL_NUMBER), v8::String::NewFromUtf8(isolate, it->serialNumber.c_str()));
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_DEVICE_ADDRESS), v8::Number::New(isolate, it->deviceAddress));
+		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MOUNT_PATH),
+                   v8::String::NewFromUtf8(isolate, it->mountPath.c_str()));
+
 		argv[0] = item;
 
 		addedCallback->Call(1, argv);
@@ -96,6 +100,8 @@ void NotifyRemoved(ListResultItem_t* it) {
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MANUFACTURER), v8::String::NewFromUtf8(isolate, it->manufacturer.c_str()));
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_SERIAL_NUMBER), v8::String::NewFromUtf8(isolate, it->serialNumber.c_str()));
 		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_DEVICE_ADDRESS), v8::Number::New(isolate, it->deviceAddress));
+		item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MOUNT_PATH),
+                   v8::String::NewFromUtf8(isolate, it->mountPath.c_str()));
 		argv[0] = item;
 
 		removedCallback->Call(1, argv);
@@ -184,6 +190,9 @@ void EIO_AfterFind(uv_work_t* req) {
 			item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MANUFACTURER), v8::String::NewFromUtf8(isolate, (*it)->manufacturer.c_str()));
 			item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_SERIAL_NUMBER), v8::String::NewFromUtf8(isolate, (*it)->serialNumber.c_str()));
 			item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_DEVICE_ADDRESS), v8::Number::New(isolate, (*it)->deviceAddress));
+			item->Set(v8::String::NewFromUtf8(isolate, OBJECT_ITEM_MOUNT_PATH),
+                        v8::String::NewFromUtf8(isolate, (*it)->mountPath.c_str()));
+
 			results->Set(i, item);
 		}
 		argv[0] = Nan::Undefined();
